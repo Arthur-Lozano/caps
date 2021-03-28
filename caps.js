@@ -9,12 +9,14 @@ require('./vendor');
 const events = require('events');
 
 
+
 function pickUp(payload) {
   setTimeout(() => {
     console.log(`Driver: picked up ${payload}`);
     events.emit('pickup', pickUp);
   }, 1000)
 }
+
 
 function inTransit(payload) {
   setTimeout(() => {
