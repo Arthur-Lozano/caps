@@ -2,12 +2,11 @@
 
 const events = require('./events');
 const faker = require('faker');
+const delivered = require('./caps');
 
-const on ('start', startFunction)
-const on ('delivered', delivered)
+let storeName = process.env.STORENAME || 'HOOBS';
 
 function startFunction() {
-
   setInterval(() => {
     let yourOrder = {
       storeName: faker.company.companyInfo(),

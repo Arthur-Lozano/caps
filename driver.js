@@ -2,26 +2,34 @@
 
 const events = require('./events');
 
-events.on('pickup', grabItem);
-events.on('inTransit', inTransit);
+events.on('driver', pickUp);
+events.on('driver', inTransit);
+events.on('driver', delivered);
+
 // events.on('inTransit', inTransit);
 
-function grabItem(payload) {
+function pickUp(payload) {
   setTimeout(() => {
-    consoleg.log(`Driver: picked up ${payload}`);
+    console.log(`Driver: picked up ${payload}`);
     events.emit('intransit', payload);
-    console.log('delivered');
-    events.emit('delivered')
-  }, 3000)
+  }, 1000)
 }
 
 function inTransit(payload) {
   setTimeout(() => {
-    consoleg.log(`Driver: picked up ${payload}`);
-    events.emit('intransit', payload);
-    console.log('delivered');
-    events.emit('delivered')
+    console.log('driver');
+    events.emit('driver', pickUp)
   }, 3000)
 }
+
+function delivered(payload) {
+  setTimeout(() => {
+    console.log('delivered');
+    events.emit('delivered', delivered)
+  }, 3000)
+}
+
+pickUp(100);
+events.emit('driver')
 
 module.exports = events;

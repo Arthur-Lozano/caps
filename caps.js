@@ -3,17 +3,38 @@
 
 //Main Hub Application
 //The brain
-
-const Event = require('events');
-let events = Event();
-
-require('./vendor');
 require('./driver');
+require('./vendor');
+
+const events = require('events');
 
 
-events.emit(start);
+function pickUp(payload) {
+  setTimeout(() => {
+    console.log(`Driver: picked up ${payload}`);
+    events.emit('pickup', pickUp);
+  }, 1000)
+}
 
-events.on(pickup)
-events.on(inTransit)
-events.on(delivered)
+function inTransit(payload) {
+  setTimeout(() => {
+    console.log('inTransit');
+    events.emit('insTransit', inTransit)
+  }, 3000)
+}
+
+function delivered(payload) {
+  setTimeout(() => {
+    console.log('delivered');
+    events.emit('delivered', delivered)
+  }, 3000)
+}
+
+
+module.exports = events;
+
+
+
+
+
 

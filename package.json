@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/Arthur-Lozano/caps/issues"
   },
-  "homepage": "https://github.com/Arthur-Lozano/caps#readme"
+  "homepage": "https://github.com/Arthur-Lozano/caps#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "faker": "^5.5.1"
+  }
 }
