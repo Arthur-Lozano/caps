@@ -1,35 +1,36 @@
 'use strict';
 
 const events = require('./events');
+require('console-stamp')(console, '[HH:MM:ss.l]');
 
-events.on('driver', pickUp);
-events.on('driver', inTransit);
-events.on('driver', delivered);
+
+events.on('pickup', pickUp);
+events.on('inTransit', inTransit);
+
 
 // events.on('inTransit', inTransit);
 
 function pickUp(payload) {
   setTimeout(() => {
-    console.log(`Driver: picked up ${payload}`);
-    events.emit('intransit', payload);
+    console.log('inTransit', payload);
+    events.emit('inTransit', payload);
   }, 1000)
+  setTimeout(() => {
+    console.log('delivered');
+    events.emit('delivered', payload);
+  }, 3000)
 }
 
 function inTransit(payload) {
-  setTimeout(() => {
-    console.log('driver');
-    events.emit('driver', pickUp)
-  }, 3000)
+  console.log('In Transit', payload);
 }
 
-function delivered(payload) {
-  setTimeout(() => {
-    console.log('delivered');
-    events.emit('delivered', delivered)
-  }, 3000)
-}
+// function delivered(payload) {
+//   setTimeout(() => {
+//     console.log('delivered', payload);
+//   }, 3000)
+// }
 
-pickUp(100);
-events.emit('driver')
 
-module.exports = events;
+
+
